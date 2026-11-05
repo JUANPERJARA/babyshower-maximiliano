@@ -139,7 +139,7 @@ textarea{min-height:70px;resize:vertical}
 
   <section class="card reveal" id="rsvp">
    <h2 class="script">Confirma tu asistencia</h2>
-   <p class="lead">Llena tus datos, elige tus regalos más abajo y confirma todo con el botón de abajo 💛</p>
+   <p class="lead">Llena tus datos, elige tus regalos más abajo y toca <b>“Confirmar”</b> 💛</p>
    <label for="rName">Tu nombre</label>
    <input id="rName" autocomplete="name" placeholder="Ej: Tía Carmen" maxlength="60">
    <label>¿Nos acompañas?</label>
@@ -170,7 +170,7 @@ textarea{min-height:70px;resize:vertical}
  <img src="img1.jpg" alt="" style="width:100%;margin-top:10px">
 </main>
 
-<div class="dock" id="dock"><button class="btn t" id="gSend">Confirmar asistencia</button></div>
+<div class="dock" id="dock"><button class="btn t" id="gSend">Confirmar</button></div>
 <div class="modal" id="modal"><div class="box" id="mbox"></div></div>
 <canvas id="confetti"></canvas>
 
@@ -233,9 +233,7 @@ document.addEventListener("click", async e => {
   }
 });
 function setBtn() {
-  const n = picked.size, upd = !!LS.get("rsvp", null);
-  const t = (upd ? "Actualizar asistencia" : "Confirmar asistencia") + (n ? ` y ${n} regalo${n > 1 ? "s" : ""}` : "");
-  $("gSend").textContent = t;
+  $("gSend").textContent = "Confirmar";
   $("dock").classList.add("show");
 }
 async function submitAll() {
