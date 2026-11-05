@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Here comes the Son · Baby Shower de Maximiliano</title>
+<meta name="description" content="Un rayito de sol viene en camino. Acompáñanos el sábado 5 de diciembre a las 3:00 PM.">
+<meta property="og:title" content="Baby Shower de Maximiliano ☀️">
+<meta property="og:description" content="Sábado 5 de diciembre · 3:00 PM · Confirma tu asistencia y elige tu regalo">
+<meta property="og:image" content="poster.jpg">
+<meta name="theme-color" content="#eaf5fc">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Fredoka:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#eef7fc;--card:#ffffffee;--tx:#2f4a52;--mu:#6f8d96;--y:#f5b335;--yd:#e39a12;--b:#7fb9d6;--c:#ef8f6f;--t:#4f97a3;--td:#3d7f8a;--bd:#d6e8f2;--ok:#25a86b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--tx);font:16px/1.45 Fredoka,system-ui,-apple-system,"Segoe UI",sans-serif;
+ background:linear-gradient(180deg,#e3f2fb 0%,#f3f9fd 40%,#fdf8ee 100%);background-attachment:fixed;overflow-x:hidden;min-height:100vh}
+main{max-width:540px;margin:0 auto;position:relative;z-index:2;padding-bottom:110px}
+.in{padding:0 16px}
+img{display:block;max-width:100%}
+.script{font-family:"Dancing Script",cursive;font-weight:700}
+
+/* ---------- fondo animado ---------- */
+#sky{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.cloud{position:absolute;width:260px;height:80px;background:#fff;border-radius:80px;opacity:.55;filter:blur(1px);animation:drift linear infinite}
+.cloud:before,.cloud:after{content:"";position:absolute;background:#fff;border-radius:50%}
+.cloud:before{width:110px;height:110px;top:-55px;left:40px}.cloud:after{width:140px;height:140px;top:-75px;left:110px}
+@keyframes drift{from{transform:translateX(-320px)}to{transform:translateX(calc(100vw + 320px))}}
+.bal{position:absolute;bottom:-360px;animation:rise linear infinite;opacity:.9}
+.bal img{width:100%;animation:sway 4s ease-in-out infinite alternate;transform-origin:50% 0}
+@keyframes rise{from{transform:translateY(0)}to{transform:translateY(calc(-100vh - 420px))}}
+@keyframes sway{from{transform:rotate(-6deg) translateX(-8px)}to{transform:rotate(6deg) translateX(8px)}}
+.tw{position:absolute;width:14px;height:14px;background:#ffd36e;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);animation:tw 3s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:0;transform:scale(.4) rotate(0)}50%{opacity:.9;transform:scale(1) rotate(45deg)}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;border-radius:0 0 28px 28px;overflow:hidden;box-shadow:0 10px 30px #4f97a322;background:#dff0fa}
+.hero video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover}
+.sound{position:absolute;right:12px;bottom:14px;border:0;border-radius:999px;padding:9px 14px;background:#ffffffe6;color:var(--td);font:inherit;font-weight:600;box-shadow:0 4px 14px #0002;cursor:pointer}
+.scroll{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);color:#fff;font-size:26px;text-shadow:0 2px 8px #0005;animation:bob 1.6s ease-in-out infinite;text-decoration:none}
+@keyframes bob{50%{transform:translate(-50%,8px)}}
+
+/* ---------- tarjetas ---------- */
+.card{background:var(--card);backdrop-filter:blur(6px);border:1px solid var(--bd);border-radius:22px;padding:18px 16px;margin:16px 0;box-shadow:0 8px 24px #4f97a314}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.on{opacity:1;transform:none}
+.when{text-align:center}
+.when h1{margin:4px 0 2px;font-size:44px;line-height:1.1;color:var(--yd)}
+.when .sub{margin:0 0 10px;color:var(--mu)}
+.pill{display:inline-flex;align-items:center;gap:6px;background:#fff4d6;color:#8a5d00;border-radius:999px;padding:7px 14px;font-weight:600;margin:4px 3px;text-decoration:none}
+.pill.map{background:#e3f3f6;color:var(--td)}
+h2{font-size:26px;margin:0 0 6px;color:var(--c);text-align:center}
+.lead{color:var(--mu);text-align:center;margin:0 0 12px;font-size:15px}
+
+/* countdown */
+.cd{display:flex;gap:8px;justify-content:center;margin-top:6px}
+.cd div{background:linear-gradient(180deg,#fff,#fff7e3);border:1px solid #f6dfa8;border-radius:16px;min-width:68px;padding:10px 4px;text-align:center}
+.cd b{display:block;font-size:30px;color:var(--yd);line-height:1}
+.cd span{font-size:12px;color:var(--mu);text-transform:uppercase;letter-spacing:.05em}
+.cd .tick{animation:pop .35s ease}
+@keyframes pop{40%{transform:scale(1.15)}}
+.sunspin{width:70px;margin:-6px auto 4px;animation:spin 18s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* forms */
+label{display:block;font-weight:500;margin:10px 0 4px;font-size:15px}
+input,textarea{width:100%;font:inherit;padding:11px 12px;border-radius:12px;border:1.5px solid var(--bd);background:#fff;color:var(--tx);outline:none;transition:border-color .2s}
+input:focus,textarea:focus{border-color:var(--b)}
+textarea{min-height:70px;resize:vertical}
+.seg{display:flex;gap:8px}.seg button{flex:1}
+.btn{background:var(--y);color:#4a3200;border:0;border-radius:14px;padding:11px 16px;font:inherit;font-weight:600;text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:transform .15s,background .2s,box-shadow .2s}
+.btn:active{transform:scale(.96)}
+.btn.t{background:var(--t);color:#fff}.btn.g{background:var(--ok);color:#fff}
+.btn.ghost{background:#fff;color:var(--mu);border:1.5px solid var(--bd)}
+.btn.sel{background:var(--t);color:#fff;box-shadow:0 0 0 3px #7fb9d655}
+.btn.wide{width:100%;margin-top:14px;padding:13px}
+.btn[disabled]{opacity:.6;pointer-events:none}
+.step{display:flex;align-items:center;gap:10px}.step button{width:44px;height:44px;padding:0;font-size:22px}.step b{min-width:28px;text-align:center;font-size:20px}
+.ok{background:#e6f7ee;color:#1d7a4f;border-radius:14px;padding:10px 12px;margin-top:12px;font-weight:500}
+.err{background:#fdecea;color:#a2352a;border-radius:14px;padding:10px 12px;margin-top:12px}
+
+/* regalos */
+.cat{margin:10px 0 0;width:100%;display:flex;align-items:center;gap:10px;font:inherit;font-size:16px;font-weight:600;color:var(--td);background:#f2f9fc;border:1.5px solid var(--bd);border-radius:16px;padding:13px 14px;cursor:pointer;text-align:left}
+.cat .cn{flex:1}.cat small{color:var(--mu);font-weight:400;font-size:13px}.cat .ar{transition:transform .25s}.cat.open .ar{transform:rotate(180deg)}
+.cat .badge{background:var(--t);color:#fff;border-radius:999px;font-size:12px;padding:2px 8px}
+.items{padding:8px 0 4px;animation:fadein .3s ease}@keyframes fadein{from{opacity:0;transform:translateY(-6px)}}
+.item{background:#fff;border:1.5px solid var(--bd);border-radius:14px;padding:10px 12px;margin-bottom:7px;display:flex;align-items:center;gap:10px;justify-content:space-between;transition:border-color .2s,background .2s,transform .2s}
+.item.picked{border-color:var(--t);background:#eef8fa;transform:scale(1.01)}
+.item.taken{opacity:.6}.item.taken b{text-decoration:line-through;color:var(--mu)}
+.item .n{flex:1;min-width:0}.item small{display:block;color:var(--mu);font-size:13px}
+.bar2{height:5px;background:#eef3f6;border-radius:9px;margin-top:6px;overflow:hidden}.bar2 i{display:block;height:100%;background:linear-gradient(90deg,var(--y),var(--c));border-radius:9px;transition:width .6s}
+.tag{color:var(--ok);font-weight:600;font-size:14px;white-space:nowrap}
+.mine{background:#fff8e6;border-color:#f6dfa8}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(180deg,#fff0,#fff 35%);transform:translateY(120%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.dock.show{transform:none}
+.dock .btn{max-width:508px;margin:0 auto;display:flex;width:100%;padding:15px;font-size:17px;box-shadow:0 8px 24px #4f97a344}
+.musicbtn{position:fixed;right:14px;top:calc(14px + env(safe-area-inset-top));z-index:25;width:46px;height:46px;border-radius:50%;border:0;background:#fff;box-shadow:0 4px 14px #0002;font-size:20px;cursor:pointer}
+.musicbtn.on{animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px #f5b33533}}
+.foot{text-align:center;margin:26px 0 0}.foot p{color:var(--mu);margin:4px 0}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:40;background:#2f4a5266;display:none;align-items:center;justify-content:center;padding:16px}
+.modal.show{display:flex}
+.modal .box{background:#fff;border-radius:24px;max-width:440px;width:100%;padding:22px 18px;text-align:center;animation:pop .4s ease;max-height:90vh;overflow:auto}
+.modal h3{margin:0 0 6px;font-size:30px;color:var(--c)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:50}
+
+/* admin */
+.adm table{width:100%;border-collapse:collapse;font-size:14px}.adm td,.adm th{padding:6px 4px;border-bottom:1px solid var(--bd);text-align:left;vertical-align:top}
+.adm .x{border:0;background:none;color:#c0392b;cursor:pointer;font-size:16px}
+.stat{display:flex;gap:8px;margin:8px 0}.stat div{flex:1;background:#eef8fa;border-radius:14px;padding:10px;text-align:center}.stat b{display:block;font-size:26px;color:var(--td)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="sky"></div>
+<button class="musicbtn" id="music" aria-label="Música">🎵</button>
+<audio id="aud" src="musica.mp3" loop preload="auto"></audio>
+
+<main>
+ <div class="hero">
+  <video id="vid" src="invitacion.mp4" poster="poster.jpg" autoplay muted loop playsinline preload="auto"></video>
+  <a class="scroll" href="#info" aria-label="Bajar">⌄</a>
+ </div>
+
+ <div class="in">
+  <section class="card when reveal" id="info">
+   <img class="sunspin" src="sol.png" alt="">
+   <div class="script" style="font-size:22px;color:var(--c)">Un rayito de sol viene en camino</div>
+   <h1 class="script">Maximiliano</h1>
+   <p class="sub">Acompáñanos a celebrar su babyshower</p>
+   <span class="pill">📅 Sábado 5 de diciembre</span><span class="pill">🕒 3:00 PM</span><br>
+   <a class="pill map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Calle+7+%2369A-27%2C+Marsella%2C+Kennedy%2C+Bogot%C3%A1">📍 Calle 7 #69A-27, Marsella, Kennedy</a>
+   <div class="cd" id="cd"><div><b id="cdD">--</b><span>días</span></div><div><b id="cdH">--</b><span>horas</span></div><div><b id="cdM">--</b><span>min</span></div><div><b id="cdS">--</b><span>seg</span></div></div>
+  </section>
+
+  <section class="card reveal" id="rsvp">
+   <h2 class="script">Confirma tu asistencia</h2>
+   <p class="lead">Nos ayuda mucho saber cuántos seremos 💛</p>
+   <label for="rName">Tu nombre</label>
+   <input id="rName" autocomplete="name" placeholder="Ej: Tía Carmen" maxlength="60">
+   <label>¿Nos acompañas?</label>
+   <div class="seg"><button class="btn sel" id="ySi" type="button">¡Sí, ahí estaré!</button><button class="btn ghost" id="yNo" type="button">No podré ir</button></div>
+   <div id="pplWrap"><label>¿Cuántas personas vienen contigo (incluyéndote)?</label>
+   <div class="step"><button class="btn ghost" id="pMinus" type="button">−</button><b id="pN">1</b><button class="btn ghost" id="pPlus" type="button">+</button></div></div>
+   <label for="rMsg">Mensaje para Maximiliano y sus papás <small style="color:var(--mu)">(opcional)</small></label>
+   <textarea id="rMsg" maxlength="300" placeholder="Unas palabras bonitas..."></textarea>
+   <button class="btn t wide" id="rSend">Confirmar</button>
+   <div id="rOut"></div>
+  </section>
+
+  <section class="card reveal" id="regalos">
+   <h2 class="script">Lista de regalos</h2>
+   <p class="lead">Elige uno o varios regalos, toca <b>“Confirmar mis regalos”</b> y quedan apartados a tu nombre para que no se repitan.</p>
+   <label for="gName">Tu nombre</label>
+   <input id="gName" autocomplete="name" placeholder="Así sabremos quién lo regala" maxlength="60">
+   <div id="mine"></div>
+   <div id="app"><p class="lead">Cargando la lista…</p></div>
+  </section>
+
+  <section class="card reveal">
+   <h2 class="script">¿Un regalo diferente?</h2>
+   <p class="lead">Si quieres regalar algo que no está en la lista, cuéntanos y nos ponemos de acuerdo por WhatsApp.</p>
+   <input id="oi" placeholder="Ej: ropa, un detalle especial...">
+   <div class="seg" style="margin-top:10px"><a class="btn g" id="o1" target="_blank" rel="noopener" href="https://wa.me/573504734927">WhatsApp 350…4927</a><a class="btn g" id="o2" target="_blank" rel="noopener" href="https://wa.me/573172646087">WhatsApp 317…6087</a></div>
+  </section>
+
+  <div class="foot reveal"><p class="script" style="font-size:30px;color:var(--c)">¡Te esperamos!</p><p>💛 Gracias por ser parte de este momento 💛</p></div>
+ </div>
+ <img src="img1.jpg" alt="" style="width:100%;margin-top:10px">
+</main>
+
+<div class="dock" id="dock"><button class="btn t" id="gSend">Confirmar mis regalos</button></div>
+<div class="modal" id="modal"><div class="box" id="mbox"></div></div>
+<canvas id="confetti"></canvas>
+
+<script>
+const API = "https://script.google.com/macros/s/AKfycbxKp_eKq4Andl3EJOMP5xinSvdoah0fU4YB4PBrhXIqeqTIrnRlBEYjyut75_gwuj0a-g/exec";
+const PH = ["573504734927", "573172646087"];
+const EVENT = new Date("2026-12-05T15:00:00-05:00");
+const CATS = [["Ropa", [["Bodies 0-3 meses", 3], ["Bodies 3-6 meses", 3], ["Bodies 6-9 meses", 3], ["Bodies 9-12 meses", 3], ["Pijamas enterizos 0-3 meses", 3], ["Pijamas enterizos 3-6 meses", 3], ["Pijamas enterizos 6-9 meses", 3], ["Pijamas enterizos 9-12 meses", 3], ["Calcetines y gorritos 0-3 meses", 3], ["Calcetines y gorritos 3-6 meses", 3], ["Calcetines y gorritos 6-9 meses", 3], ["Calcetines y gorritos 9-12 meses", 3], ["Mantas y cobijas", 2]]], ["Pañales y aseo", [["Pañales recién nacido", 5], ["Pañales talla 1", 5], ["Pañales talla 2", 5], ["Pañales talla 3", 5], ["Toallitas húmedas", 6], ["Bañera", 1], ["Toalla con capucha", 1], ["Jabón y shampoo para bebé", 2], ["Crema para el pañal", 4], ["Caneca de pañales", 1]]], ["Alimentación", [["Biberones (teteros)", 1], ["Esterilizador de biberones", 1], ["Baberos y paños de muselina", 2], ["Extractor de leche", 1], ["Calentador de leche", 1], ["Pezoneras", 1], ["Crema de lanolina para pezones", 1], ["Bolsas de almacenamiento de leche materna", 2]]], ["Descanso", [["Sábanas para cuna", 1], ["Lámpara de noche o móvil", 1], ["Monitor de bebé", 1], ["Cojín de lactancia", 1]]], ["Paseo", [["Cochecito", 1], ["Portabebé ergonómico", 1], ["Pañalera", 1]]], ["Salud y cuidado", [["Termómetro", 1], ["Aspirador nasal", 1], ["Kit de cuidado (cortaúñas, cepillo)", 1]]], ["Juego", [["Gimnasio de actividades", 1], ["Sonajeros y mordederas", 2], ["Libros de tela", 2], ["Otros juguetes de bebé", 3]]]];
+const ICON = {"Ropa":"👕","Pañales y aseo":"🛁","Alimentación":"🍼","Descanso":"🌙","Paseo":"🚼","Salud y cuidado":"🩺","Juego":"🧸"};
+const slug = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const $ = id => document.getElementById(id);
+const LS = { get(k, d) { try { const v = localStorage.getItem("bsmax_" + k); return v == null ? d : JSON.parse(v) } catch (e) { return d } }, set(k, v) { try { localStorage.setItem("bsmax_" + k, JSON.stringify(v)) } catch (e) {} } };
+let token = LS.get("token", null); if (!token) { token = (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2) + Date.now()).replace(/-/g, "").slice(0, 24); LS.set("token", token) }
+let S = { reserved: {} }, loaded = false, picked = new Set(), mine = LS.get("mine", []), openCats = new Set([0]);
+
+async function api(body) {
+  if (!body) { const r = await fetch(API + "?t=" + Date.now()); return r.json() }
+  const r = await fetch(API, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(body) });
+  return r.json();
+}
+
+/* ---------- regalos ---------- */
+function render() {
+  let h = "";
+  if (!loaded) { $("app").innerHTML = `<p class="lead">Cargando la lista…</p>`; return }
+  CATS.forEach(([c, items], ci) => {
+    const avail = items.filter(([it, q]) => (S.reserved[slug(it)] || []).length < q).length;
+    const np = items.filter(([it]) => picked.has(slug(it))).length, op = openCats.has(ci);
+    h += `<button class="cat ${op ? "open" : ""}" data-cat="${ci}"><span>${ICON[c] || "🎁"}</span><span class="cn">${esc(c)}<br><small>${avail ? avail + " disponible" + (avail > 1 ? "s" : "") : "Todo elegido ✓"}</small></span>${np ? `<span class="badge">${np}</span>` : ""}<span class="ar">⌄</span></button>`;
+    if (!op) return;
+    h += `<div class="items">`;
+    items.forEach(([it, q]) => {
+      const id = slug(it), w = S.reserved[id] || [], left = Math.max(0, q - w.length), full = left <= 0, pk = picked.has(id);
+      h += `<div class="item ${full ? "taken" : ""} ${pk ? "picked" : ""}"><div class="n"><b>${esc(it)}</b>`;
+      if (q > 1) h += `<small>${full ? "¡Completo!" : "Faltan " + left + " de " + q}</small><div class="bar2"><i style="width:${Math.round(100 * Math.min(q, w.length) / q)}%"></i></div>`;
+      if (w.length) h += `<small>Lo regala${w.length > 1 ? "n" : ""}: ${w.map(esc).join(", ")}</small>`;
+      h += `</div>`;
+      h += full ? `<span class="tag">✓ Elegido</span>` : `<button class="btn ${pk ? "sel" : ""}" data-pick="${id}">${pk ? "✓ Elegido" : "Elegir"}</button>`;
+      h += `</div>`;
+    });
+    h += `</div>`;
+  });
+  $("app").innerHTML = h;
+  $("dock").classList.toggle("show", picked.size > 0);
+  $("gSend").textContent = picked.size === 1 ? "Confirmar mi regalo (1)" : `Confirmar mis regalos (${picked.size})`;
+  renderMine();
+}
+function renderMine() {
+  if (!mine.length) { $("mine").innerHTML = ""; return }
+  $("mine").innerHTML = `<div class="item mine" style="margin-top:12px;display:block"><b>🎁 Tus regalos elegidos</b>` +
+    mine.map(m => `<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:6px"><span>${esc(m.name)}</span><button class="btn ghost" style="padding:6px 10px;font-size:14px" data-cancel="${esc(m.id)}">Quitar</button></div>`).join("") + `</div>`;
+}
+document.addEventListener("click", async e => {
+  const b = e.target.closest("button"); if (!b) return;
+  if (b.dataset.cat) { const i = +b.dataset.cat; openCats.has(i) ? openCats.delete(i) : openCats.add(i); render(); return }
+  if (b.dataset.pick) { const id = b.dataset.pick; picked.has(id) ? picked.delete(id) : picked.add(id); render(); if (navigator.vibrate) navigator.vibrate(15) }
+  if (b.dataset.cancel) {
+    b.disabled = true;
+    try { const r = await api({ action: "cancel", ids: [b.dataset.cancel], token }); if (r.ok) { S = r; mine = mine.filter(m => m.id !== b.dataset.cancel); LS.set("mine", mine); render() } } catch (err) { b.disabled = false; alert("No se pudo quitar, intenta de nuevo.") }
+  }
+});
+$("gSend").onclick = async () => {
+  const name = $("gName").value.trim();
+  if (!name) { $("gName").focus(); $("gName").scrollIntoView({ behavior: "smooth", block: "center" }); $("gName").style.borderColor = "#ef8f6f"; return }
+  LS.set("name", name);
+  const items = [];
+  CATS.forEach(([, its]) => its.forEach(([it, q]) => { const id = slug(it); if (picked.has(id)) items.push({ id, name: it, qty: q }) }));
+  const btn = $("gSend"); btn.disabled = true; btn.textContent = "Guardando…";
+  try {
+    const r = await api({ action: "choose", name, token, items });
+    if (!r.ok) throw r;
+    S = r; picked.clear();
+    (r.done || []).forEach(d => mine.push({ id: d.id, name: d.name })); LS.set("mine", mine);
+    render(); celebrate(r.done || [], r.full || [], name);
+  } catch (err) { alert("Ups, no se pudo guardar. Revisa tu conexión e intenta de nuevo.") }
+  btn.disabled = false; render();
+};
+function celebrate(done, full, name) {
+  const list = done.map(d => "• " + d.name).join("\n");
+  const m = encodeURIComponent(`¡Hola! Soy ${name} y elegí para Maximiliano:\n${list} 🎁`);
+  $("mbox").innerHTML = `<h3 class="script">¡Gracias, ${esc(name)}!</h3>` +
+    (done.length ? `<p>Quedó guardado a tu nombre:</p><p><b>${done.map(d => esc(d.name)).join("<br>")}</b></p>` : "") +
+    (full.length ? `<p class="err">Alguien se te adelantó con: ${full.map(esc).join(", ")}. Puedes elegir otro 💛</p>` : "") +
+    (done.length ? `<p style="color:var(--mu);font-size:14px">Si quieres, avísanos también por WhatsApp:</p><div class="seg"><a class="btn g" target="_blank" rel="noopener" href="https://wa.me/${PH[0]}?text=${m}">350…4927</a><a class="btn g" target="_blank" rel="noopener" href="https://wa.me/${PH[1]}?text=${m}">317…6087</a></div>` : "") +
+    `<button class="btn ghost wide" onclick="document.getElementById('modal').classList.remove('show')">Listo</button>`;
+  $("modal").classList.add("show"); if (done.length) confetti();
+}
+
+/* ---------- asistencia ---------- */
+let attend = true, ppl = 1;
+const rs = LS.get("rsvp", null);
+if (rs) { $("rName").value = rs.name; attend = rs.attend; ppl = rs.people || 1; $("rMsg").value = rs.msg || ""; $("rSend").textContent = "Actualizar confirmación" }
+$("gName").value = LS.get("name", rs ? rs.name : "");
+function rsUI() { $("ySi").className = "btn " + (attend ? "sel" : "ghost"); $("yNo").className = "btn " + (!attend ? "sel" : "ghost"); $("pplWrap").style.display = attend ? "" : "none"; $("pN").textContent = ppl }
+$("ySi").onclick = () => { attend = true; rsUI() }; $("yNo").onclick = () => { attend = false; rsUI() };
+$("pMinus").onclick = () => { ppl = Math.max(1, ppl - 1); rsUI() }; $("pPlus").onclick = () => { ppl = Math.min(15, ppl + 1); rsUI() };
+rsUI();
+if (rs) $("rOut").innerHTML = `<div class="ok">✓ Ya confirmaste${rs.attend ? " (" + rs.people + (rs.people > 1 ? " personas" : " persona") + ")" : ""}. Puedes cambiarlo cuando quieras.</div>`;
+$("rSend").onclick = async () => {
+  const name = $("rName").value.trim();
+  if (!name) { $("rName").focus(); $("rName").style.borderColor = "#ef8f6f"; return }
+  const btn = $("rSend"); btn.disabled = true; btn.textContent = "Enviando…";
+  const body = { action: "rsvp", name, token, attend, people: ppl, msg: $("rMsg").value.trim() };
+  try {
+    const r = await api(body); if (!r.ok) throw r;
+    LS.set("rsvp", { name, attend, people: ppl, msg: body.msg });
+    if (!$("gName").value) $("gName").value = name;
+    $("rOut").innerHTML = attend ? `<div class="ok">✓ ¡Gracias, ${esc(name)}! Te esperamos${ppl > 1 ? " con tus " + (ppl - 1) + " acompañante" + (ppl > 2 ? "s" : "") : ""} ☀️</div>` : `<div class="ok">Gracias por avisarnos, ${esc(name)}. ¡Te vamos a extrañar! 💛</div>`;
+    btn.textContent = "Actualizar confirmación"; if (attend) confetti();
+  } catch (err) { $("rOut").innerHTML = `<div class="err">No se pudo enviar. Revisa tu conexión e intenta de nuevo.</div>`; btn.textContent = "Confirmar" }
+  btn.disabled = false;
+};
+
+/* ---------- otro regalo ---------- */
+(function () { const i = $("oi"); function u() { const m = encodeURIComponent("¡Hola! Quiero hacerle un regalo diferente a Maximiliano: " + (i.value || "(te cuento por aquí)") + " 🎁"); $("o1").href = "https://wa.me/" + PH[0] + "?text=" + m; $("o2").href = "https://wa.me/" + PH[1] + "?text=" + m } i.addEventListener("input", u); u() })();
+
+/* ---------- cuenta regresiva ---------- */
+function cd() {
+  let s = Math.max(0, Math.floor((EVENT - Date.now()) / 1000));
+  const v = { cdD: Math.floor(s / 86400), cdH: Math.floor(s % 86400 / 3600), cdM: Math.floor(s % 3600 / 60), cdS: s % 60 };
+  for (const k in v) { const el = $(k), t = String(v[k]).padStart(2, "0"); if (el.textContent !== t) { el.textContent = t; el.classList.remove("tick"); void el.offsetWidth; el.classList.add("tick") } }
+  if (s === 0) $("cd").innerHTML = `<p class="script" style="font-size:28px;color:var(--c);margin:0">¡Hoy es el gran día! ☀️</p>`;
+  else setTimeout(cd, 1000);
+}
+cd();
+
+/* ---------- música ---------- */
+const aud = $("aud"), mb = $("music"); let musicOn = false, userMuted = false;
+aud.volume = .55;
+function setMusic(on) { musicOn = on; mb.classList.toggle("on", on); mb.textContent = on ? "🎵" : "🔇"; if (on) aud.play().catch(() => { musicOn = false; mb.classList.remove("on"); mb.textContent = "🎵" }); else aud.pause() }
+mb.onclick = e => { e.stopPropagation(); userMuted = musicOn; setMusic(!musicOn) };
+const first = () => { if (!musicOn && !userMuted) setMusic(true); window.removeEventListener("pointerdown", first) };
+window.addEventListener("pointerdown", first);
+mb.textContent = "🎵";
+
+/* ---------- fondo vivo ---------- */
+(function () {
+  const sky = $("sky"), small = innerWidth < 600;
+  for (let i = 0; i < 4; i++) { const c = document.createElement("div"); c.className = "cloud"; c.style.top = (8 + i * 24) + "%"; c.style.transform = "scale(" + (0.6 + Math.random() * .5) + ")"; c.style.animationDuration = (50 + Math.random() * 40) + "s"; c.style.animationDelay = (-Math.random() * 80) + "s"; sky.appendChild(c) }
+  const imgs = ["globo_amarillo.png", "globo_azul.png"];
+  for (let i = 0; i < (small ? 5 : 8); i++) { const b = document.createElement("div"); b.className = "bal"; const w = 34 + Math.random() * 36; b.style.width = w + "px"; b.style.left = (Math.random() * 92) + "%"; b.style.animationDuration = (18 + Math.random() * 16) + "s"; b.style.animationDelay = (-Math.random() * 30) + "s"; b.style.opacity = .45 + Math.random() * .4; b.innerHTML = `<img src="${imgs[i % 2]}" alt="">`; b.firstChild.style.animationDuration = (3 + Math.random() * 3) + "s"; sky.appendChild(b) }
+  for (let i = 0; i < 18; i++) { const s = document.createElement("div"); s.className = "tw"; s.style.left = Math.random() * 100 + "%"; s.style.top = Math.random() * 100 + "%"; const z = 8 + Math.random() * 12; s.style.width = s.style.height = z + "px"; s.style.animationDelay = (-Math.random() * 3) + "s"; s.style.animationDuration = (2 + Math.random() * 3) + "s"; sky.appendChild(s) }
+})();
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target) } }), { threshold: .12 });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+/* ---------- confeti ---------- */
+function confetti() {
+  const cv = $("confetti"), x = cv.getContext("2d"); cv.width = innerWidth; cv.height = innerHeight;
+  const cols = ["#f5b335", "#7fb9d6", "#ef8f6f", "#4f97a3", "#ffd36e"]; const P = [];
+  for (let i = 0; i < 140; i++) P.push({ x: innerWidth / 2, y: innerHeight * .45, vx: (Math.random() - .5) * 14, vy: -Math.random() * 14 - 4, r: 4 + Math.random() * 5, c: cols[i % 5], a: Math.random() * 6, s: Math.random() > .5 });
+  let f = 0; (function step() { x.clearRect(0, 0, cv.width, cv.height); P.forEach(p => { p.vy += .35; p.vx *= .99; p.x += p.vx; p.y += p.vy; p.a += .2; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; if (p.s) x.fillRect(-p.r, -p.r / 2, p.r * 2, p.r); else { x.beginPath(); x.arc(0, 0, p.r / 1.4, 0, 7); x.fill() } x.restore() }); if (++f < 150) requestAnimationFrame(step); else x.clearRect(0, 0, cv.width, cv.height) })();
+}
+
+/* ---------- cargar ---------- */
+async function load() {
+  try { const r = await api(); if (r.ok) { S = r; loaded = true; render() } else throw r }
+  catch (e) { $("app").innerHTML = `<div class="err">No pudimos cargar la lista en este momento. Recarga la página o escríbenos por WhatsApp.</div>` }
+}
+if (!/^https?:/.test(API)) { loaded = true; render() } else load();
+setInterval(() => { if (document.visibilityState === "visible" && /^https?:/.test(API) && !picked.size) api().then(r => { if (r.ok) { S = r; render() } }).catch(() => {}) }, 30000);
+
+/* ---------- panel privado (?admin) ---------- */
+if (/[?&#]admin/.test(location.href)) {
+  const box = document.createElement("section"); box.className = "card adm"; box.id = "adm";
+  box.innerHTML = `<h2 class="script">Panel de los papás</h2><label>Clave</label><div class="seg"><input id="pin" type="password" inputmode="numeric"><button class="btn t" id="pinGo">Entrar</button></div><div id="admOut"></div>`;
+  document.querySelector(".in").prepend(box);
+  let pin = "";
+  const show = r => {
+    if (!r.ok) { $("admOut").innerHTML = `<div class="err">Clave incorrecta</div>`; return }
+    const yes = r.rsvp.filter(x => x.attend !== "No"), ppl = yes.reduce((a, x) => a + Number(x.people || 0), 0);
+    let h = `<div class="stat"><div><b>${ppl}</b>personas</div><div><b>${yes.length}</b>confirmaciones</div><div><b>${r.gifts.length}</b>regalos</div></div>`;
+    h += `<p><a class="btn ghost" target="_blank" rel="noopener" href="${esc(r.url)}">Abrir hoja de Google</a></p>`;
+    h += `<h3>Asistencia</h3><table><tr><th>Nombre</th><th>Va</th><th>#</th><th></th></tr>` + r.rsvp.map(x => `<tr><td>${esc(x.name)}${x.msg ? `<br><small style="color:var(--mu)">“${esc(x.msg)}”</small>` : ""}</td><td>${esc(x.attend)}</td><td>${esc(x.people)}</td><td><button class="x" data-del="rsvp:${esc(x.id)}">✕</button></td></tr>`).join("") + `</table>`;
+    h += `<h3>Regalos</h3><table><tr><th>Regalo</th><th>Quién</th><th></th></tr>` + r.gifts.map(x => `<tr><td>${esc(x.gift)}</td><td>${esc(x.who)}</td><td><button class="x" data-del="gift:${esc(x.id)}">✕</button></td></tr>`).join("") + `</table>`;
+    $("admOut").innerHTML = h;
+  };
+  $("pinGo").onclick = async () => { pin = $("pin").value.trim(); show(await api({ action: "admin", pin })) };
+  box.addEventListener("click", async e => { const b = e.target.closest("[data-del]"); if (!b) return; const [sheet, id] = b.dataset.del.split(":"); if (!confirm("¿Quitar este registro?")) return; const r = await api({ action: "adminDelete", pin, sheet, id }); show(r); load() });
+}
+</script>
+</body>
+</html>
