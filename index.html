@@ -139,7 +139,7 @@ textarea{min-height:70px;resize:vertical}
 
   <section class="card reveal" id="rsvp">
    <h2 class="script">Confirma tu asistencia</h2>
-   <p class="lead">Nos ayuda mucho saber cuántos seremos 💛</p>
+   <p class="lead">Llena tus datos, elige tus regalos más abajo y confirma todo con el botón de abajo 💛</p>
    <label for="rName">Tu nombre</label>
    <input id="rName" autocomplete="name" placeholder="Ej: Tía Carmen" maxlength="60">
    <label>¿Nos acompañas?</label>
@@ -148,15 +148,12 @@ textarea{min-height:70px;resize:vertical}
    <div class="step"><button class="btn ghost" id="pMinus" type="button">−</button><b id="pN">1</b><button class="btn ghost" id="pPlus" type="button">+</button></div></div>
    <label for="rMsg">Mensaje para Maximiliano y sus papás <small style="color:var(--mu)">(opcional)</small></label>
    <textarea id="rMsg" maxlength="300" placeholder="Unas palabras bonitas..."></textarea>
-   <button class="btn t wide" id="rSend">Confirmar</button>
    <div id="rOut"></div>
   </section>
 
   <section class="card reveal" id="regalos">
    <h2 class="script">Lista de regalos</h2>
-   <p class="lead">Elige uno o varios regalos, toca <b>“Confirmar mis regalos”</b> y quedan apartados a tu nombre para que no se repitan.</p>
-   <label for="gName">Tu nombre</label>
-   <input id="gName" autocomplete="name" placeholder="Así sabremos quién lo regala" maxlength="60">
+   <p class="lead">Elige uno o varios regalos (opcional). Al confirmar quedan apartados a tu nombre para que no se repitan.</p>
    <div id="mine"></div>
    <div id="app"><p class="lead">Cargando la lista…</p></div>
   </section>
@@ -173,7 +170,7 @@ textarea{min-height:70px;resize:vertical}
  <img src="img1.jpg" alt="" style="width:100%;margin-top:10px">
 </main>
 
-<div class="dock" id="dock"><button class="btn t" id="gSend">Confirmar mis regalos</button></div>
+<div class="dock" id="dock"><button class="btn t" id="gSend">Confirmar asistencia</button></div>
 <div class="modal" id="modal"><div class="box" id="mbox"></div></div>
 <canvas id="confetti"></canvas>
 
@@ -218,8 +215,7 @@ function render() {
     h += `</div>`;
   });
   $("app").innerHTML = h;
-  $("dock").classList.toggle("show", picked.size > 0);
-  $("gSend").textContent = picked.size === 1 ? "Confirmar mi regalo (1)" : `Confirmar mis regalos (${picked.size})`;
+  setBtn();
   renderMine();
 }
 function renderMine() {
@@ -236,58 +232,55 @@ document.addEventListener("click", async e => {
     try { const r = await api({ action: "cancel", ids: [b.dataset.cancel], token }); if (r.ok) { S = r; mine = mine.filter(m => m.id !== b.dataset.cancel); LS.set("mine", mine); render() } } catch (err) { b.disabled = false; alert("No se pudo quitar, intenta de nuevo.") }
   }
 });
-$("gSend").onclick = async () => {
-  const name = $("gName").value.trim();
-  if (!name) { $("gName").focus(); $("gName").scrollIntoView({ behavior: "smooth", block: "center" }); $("gName").style.borderColor = "#ef8f6f"; return }
-  LS.set("name", name);
+function setBtn() {
+  const n = picked.size, upd = !!LS.get("rsvp", null);
+  const t = (upd ? "Actualizar asistencia" : "Confirmar asistencia") + (n ? ` y ${n} regalo${n > 1 ? "s" : ""}` : "");
+  $("gSend").textContent = t;
+  $("dock").classList.add("show");
+}
+async function submitAll() {
+  const name = $("rName").value.trim();
+  if (!name) { $("rName").style.borderColor = "#ef8f6f"; $("rName").scrollIntoView({ behavior: "smooth", block: "center" }); setTimeout(() => $("rName").focus(), 400); return }
   const items = [];
   CATS.forEach(([, its]) => its.forEach(([it, q]) => { const id = slug(it); if (picked.has(id)) items.push({ id, name: it, qty: q }) }));
-  const btn = $("gSend"); btn.disabled = true; btn.textContent = "Guardando…";
+  const btns = [$("gSend")]; btns.forEach(b => { b.disabled = true; b.textContent = "Guardando…" });
+  const msg = $("rMsg").value.trim();
   try {
-    const r = await api({ action: "choose", name, token, items });
-    if (!r.ok) throw r;
-    S = r; picked.clear();
-    (r.done || []).forEach(d => mine.push({ id: d.id, name: d.name })); LS.set("mine", mine);
-    render(); celebrate(r.done || [], r.full || [], name);
+    const r1 = await api({ action: "rsvp", name, token, attend, people: ppl, msg }); if (!r1.ok) throw r1;
+    LS.set("rsvp", { name, attend, people: ppl, msg }); rsOk(name);
+    let done = [], full = [];
+    if (items.length) {
+      const r2 = await api({ action: "choose", name, token, items }); if (!r2.ok) throw r2;
+      S = r2; done = r2.done || []; full = r2.full || []; picked.clear();
+      done.forEach(d => mine.push({ id: d.id, name: d.name })); LS.set("mine", mine);
+    }
+    celebrate(done, full, name);
   } catch (err) { alert("Ups, no se pudo guardar. Revisa tu conexión e intenta de nuevo.") }
-  btn.disabled = false; render();
-};
+  btns.forEach(b => b.disabled = false); render();
+}
+$("gSend").onclick = submitAll;
 function celebrate(done, full, name) {
   const list = done.map(d => "• " + d.name).join("\n");
-  const m = encodeURIComponent(`¡Hola! Soy ${name} y elegí para Maximiliano:\n${list} 🎁`);
-  $("mbox").innerHTML = `<h3 class="script">¡Gracias, ${esc(name)}!</h3>` +
-    (done.length ? `<p>Quedó guardado a tu nombre:</p><p><b>${done.map(d => esc(d.name)).join("<br>")}</b></p>` : "") +
+  const m = encodeURIComponent(`¡Hola! Soy ${name}${attend ? " y voy al babyshower (" + ppl + (ppl > 1 ? " personas" : " persona") + ")" : ""}.` + (done.length ? `\nElegí para Maximiliano:\n${list} 🎁` : ""));
+  const att = attend ? `<p>✓ Asistencia confirmada: <b>${ppl} ${ppl > 1 ? "personas" : "persona"}</b>. ¡Te esperamos! ☀️</p>` : `<p>Gracias por avisarnos que no podrás ir. ¡Te vamos a extrañar! 💛</p>`;
+  $("mbox").innerHTML = `<h3 class="script">¡Gracias, ${esc(name)}!</h3>` + att +
+    (done.length ? `<p>Regalos apartados a tu nombre:</p><p><b>${done.map(d => esc(d.name)).join("<br>")}</b></p>` : "") +
     (full.length ? `<p class="err">Alguien se te adelantó con: ${full.map(esc).join(", ")}. Puedes elegir otro 💛</p>` : "") +
-    (done.length ? `<p style="color:var(--mu);font-size:14px">Si quieres, avísanos también por WhatsApp:</p><div class="seg"><a class="btn g" target="_blank" rel="noopener" href="https://wa.me/${PH[0]}?text=${m}">350…4927</a><a class="btn g" target="_blank" rel="noopener" href="https://wa.me/${PH[1]}?text=${m}">317…6087</a></div>` : "") +
+    `<p style="color:var(--mu);font-size:14px">Si quieres, avísanos también por WhatsApp:</p><div class="seg"><a class="btn g" target="_blank" rel="noopener" href="https://wa.me/${PH[0]}?text=${m}">350…4927</a><a class="btn g" target="_blank" rel="noopener" href="https://wa.me/${PH[1]}?text=${m}">317…6087</a></div>` +
     `<button class="btn ghost wide" onclick="document.getElementById('modal').classList.remove('show')">Listo</button>`;
-  $("modal").classList.add("show"); if (done.length) confetti();
+  $("modal").classList.add("show"); if (attend || done.length) confetti();
 }
 
 /* ---------- asistencia ---------- */
 let attend = true, ppl = 1;
 const rs = LS.get("rsvp", null);
-if (rs) { $("rName").value = rs.name; attend = rs.attend; ppl = rs.people || 1; $("rMsg").value = rs.msg || ""; $("rSend").textContent = "Actualizar confirmación" }
-$("gName").value = LS.get("name", rs ? rs.name : "");
+if (rs) { $("rName").value = rs.name; attend = rs.attend; ppl = rs.people || 1; $("rMsg").value = rs.msg || "" }
 function rsUI() { $("ySi").className = "btn " + (attend ? "sel" : "ghost"); $("yNo").className = "btn " + (!attend ? "sel" : "ghost"); $("pplWrap").style.display = attend ? "" : "none"; $("pN").textContent = ppl }
 $("ySi").onclick = () => { attend = true; rsUI() }; $("yNo").onclick = () => { attend = false; rsUI() };
 $("pMinus").onclick = () => { ppl = Math.max(1, ppl - 1); rsUI() }; $("pPlus").onclick = () => { ppl = Math.min(15, ppl + 1); rsUI() };
 rsUI();
-if (rs) $("rOut").innerHTML = `<div class="ok">✓ Ya confirmaste${rs.attend ? " (" + rs.people + (rs.people > 1 ? " personas" : " persona") + ")" : ""}. Puedes cambiarlo cuando quieras.</div>`;
-$("rSend").onclick = async () => {
-  const name = $("rName").value.trim();
-  if (!name) { $("rName").focus(); $("rName").style.borderColor = "#ef8f6f"; return }
-  const btn = $("rSend"); btn.disabled = true; btn.textContent = "Enviando…";
-  const body = { action: "rsvp", name, token, attend, people: ppl, msg: $("rMsg").value.trim() };
-  try {
-    const r = await api(body); if (!r.ok) throw r;
-    LS.set("rsvp", { name, attend, people: ppl, msg: body.msg });
-    if (!$("gName").value) $("gName").value = name;
-    $("rOut").innerHTML = attend ? `<div class="ok">✓ ¡Gracias, ${esc(name)}! Te esperamos${ppl > 1 ? " con tus " + (ppl - 1) + " acompañante" + (ppl > 2 ? "s" : "") : ""} ☀️</div>` : `<div class="ok">Gracias por avisarnos, ${esc(name)}. ¡Te vamos a extrañar! 💛</div>`;
-    btn.textContent = "Actualizar confirmación"; if (attend) confetti();
-  } catch (err) { $("rOut").innerHTML = `<div class="err">No se pudo enviar. Revisa tu conexión e intenta de nuevo.</div>`; btn.textContent = "Confirmar" }
-  btn.disabled = false;
-};
-
+function rsOk(name) { const x = LS.get("rsvp", null); if (x) $("rOut").innerHTML = `<div class="ok">✓ ${esc(x.name)}, ya confirmaste${x.attend ? " (" + x.people + (x.people > 1 ? " personas" : " persona") + ")" : " que no podrás ir"}. Puedes cambiarlo cuando quieras.</div>` }
+rsOk(); setBtn();
 /* ---------- otro regalo ---------- */
 (function () { const i = $("oi"); function u() { const m = encodeURIComponent("¡Hola! Quiero hacerle un regalo diferente a Maximiliano: " + (i.value || "(te cuento por aquí)") + " 🎁"); $("o1").href = "https://wa.me/" + PH[0] + "?text=" + m; $("o2").href = "https://wa.me/" + PH[1] + "?text=" + m } i.addEventListener("input", u); u() })();
 
